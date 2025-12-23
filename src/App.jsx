@@ -29,9 +29,12 @@ function App() {
   return (
     <div>
       <Bubbles count={18} />
+      <div className='bg-fixed'></div>
       <div className="hero invite-root">
+        <div>
         <img src={bismillah} alt="Bismillah" className='bismillah' /><br />
         <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
+        </div>
         <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
         <p className="date playfair-display">The Gabion Garden Hall</p>
         <p className="date playfair-display">15.02.2026</p>
