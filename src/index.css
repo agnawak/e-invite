@@ -13,6 +13,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.great-vibes-regular {
+  font-family: "Great Vibes", cursive!important;
+  font-weight: 400;
+  font-style: normal!important;
+  font-size: 5.5em;
+}
+
+.playfair-display {
+  font-family: "Playfair Display", serif!important;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal!important;
+}
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -34,6 +49,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 20px 0!important;
 }
 
 button {
@@ -53,6 +69,58 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.bubbles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0; /* stay behind content */
+}
+
+.bubble {
+  position: absolute;
+  /* start near top: `top` is provided inline by JS */
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  transform: translate(0, 0) scale(1);
+  will-change: transform, opacity;
+  animation-name: bubble-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal; /* fall downward each cycle */
+  animation-fill-mode: none;
+  opacity: 0.95;
+  box-shadow: 0 6px 18px rgba(248, 170, 69, 0.04);
+}
+
+@keyframes bubble-fall {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.95;
+  }
+  25% {
+    transform: translateX(calc(var(--drift) * 0.35)) translateY(25vh) rotate(calc(var(--rot) * 0.18)) scale(1.01);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateX(calc(var(--drift) * -0.45)) translateY(50vh) rotate(calc(var(--rot) * -0.32)) scale(0.99);
+    opacity: 0.92;
+  }
+  75% {
+    transform: translateX(calc(var(--drift) * 0.75)) translateY(85vh) rotate(calc(var(--rot) * 0.42)) scale(1.02);
+    opacity: 0.88;
+  }
+  100% {
+    transform: translateX(calc(var(--drift) * 1.0)) translateY(120vh) rotate(calc(var(--rot) * 0.6)) scale(1.03);
+    opacity: 0.12;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bubble { animation: none !important; opacity: 0.85 }
 }
 
 @media (prefers-color-scheme: light) {

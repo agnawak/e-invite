@@ -1,81 +1,78 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import bismillah from './assets/png/bismillah.png'
 import crownOpen from './assets/png/crown down.png'
 import crownClose from './assets/png/crown up.png'
-import './App.css'
+import Countdown from './components/Countdown.jsx'
+import Rsvp from './components/Rsvp.jsx'
+import Bubbles from './components/Bubbles.jsx'
+import Messages from './components/Messages.jsx'
 
 function App() {
   const [showRsvp, setShowRsvp] = useState(false)
-  const [name, setName] = useState('')
-  const [attending, setAttending] = useState('yes')
-  const [sent, setSent] = useState(false)
+  const [messages, setMessages] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('messages') || '[]')
+    } catch (e) {
+      return []
+    }
+  })
 
-  function submitRsvp(e) {
-    e.preventDefault()
-    setSent(true)
-    // In production, replace with real endpoint or mailto link.
+  useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(messages))
+  }, [messages])
+
+  function sendMessage({ text, name }) {
+    const msg = { id: Date.now(), text, name: name || 'Guest', createdAt: new Date().toISOString() }
+    setMessages((s) => [...s, msg])
   }
 
   return (
-    <div className="invite-root">
-      <header className="hero">
+    <div>
+      <Bubbles count={18} />
+      <div className="hero invite-root">
         <img src={bismillah} alt="Bismillah" className='bismillah' /><br />
         <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
-        <h1 className="names">Elisa &amp; Partner</h1>
-        <p className="subtitle">Request the pleasure of your company</p>
-        <p className="date">Saturday, June 20, 2026 · 3:00 PM</p>
+        <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
+        <p className="date playfair-display">The Gabion Garden Hall</p>
+        <p className="date playfair-display">15.02.2026</p>
+        <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
+      </div>
+
+      <div className="hero invite-root">
+        <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
+        <p className="date playfair-display">With Joy and Gratitude to Almighty God</p>
+        <h1 className="parents great-vibes-regular">Bokhari Bin Hassan<br /> &amp; <br />Hanorliza Binti Hassan Basri</h1>
+        <p className="date playfair-display">cordially invite</p>
+        <p className="date playfair-display">Dato' | Datin | Mr. | Mrs. | Ms.</p>
+        <p className="date playfair-display">to the wedding reception of our son</p>
+        <br />
+        <h1 className="children great-vibes-regular">Nabil Hakim<br /> &amp; <br /> Elisa Jasmin</h1>
+        <p className="subtitle playfair-display">Date</p>
+        <p className="date playfair-display">Sunday • 15.02.2026</p>
+        <p className="subtitle playfair-display">Time</p>
+        <p className="date playfair-display">3:00PM - 5:00PM</p>
+        <p className="subtitle playfair-display">Venue</p>
+        <p className="date playfair-display">The Gabion Garden Hall</p>
+        <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
+        <br />
         <button className="rsvp" onClick={() => setShowRsvp(true)}>
           RSVP
         </button>
-      </header>
+      </div>
 
       <section className="details">
         <div className="card">
-          <h2>Reception</h2>
-          <p>The Gabion Garden Hall</p>
+          <h2>Countdown</h2>
+          {/* Target: 15 February 2026 (local time). Modify as needed. */}
+          <Countdown targetDate={new Date(2026, 1, 15, 0, 0, 0)} />
         </div>
         <div className="card">
-          <h2>Dress Code</h2>
-          <p>Smart casual</p>
+          <h2>Message To The<br />Newlyweds</h2>
+          <Messages messages={messages} onSend={sendMessage} />
         </div>
       </section>
 
-      <footer className="footer">
-        <p>Location, directions, and accommodation details available on request.</p>
-        <p className="small">Change details in <code>src/App.jsx</code></p>
-      </footer>
-
-      {showRsvp && (
-        <div className="modal" role="dialog" aria-modal="true">
-          <div className="modal-content">
-            <button className="close" onClick={() => { setShowRsvp(false); setSent(false); }}>Close</button>
-            <h3>RSVP</h3>
-            {!sent ? (
-              <form onSubmit={submitRsvp} className="rsvp-form">
-                <label>
-                  Your name
-                  <input value={name} onChange={(e) => setName(e.target.value)} required />
-                </label>
-                <label>
-                  Will you attend?
-                  <select value={attending} onChange={(e) => setAttending(e.target.value)}>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </select>
-                </label>
-                <div className="actions">
-                  <button type="submit" className="btn-primary">Send RSVP</button>
-                </div>
-              </form>
-            ) : (
-              <div className="thanks">
-                <p>Thanks, {name || 'guest'} — your RSVP is recorded.</p>
-                <p className="small">Customize the RSVP handling in <code>src/App.jsx</code>.</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {showRsvp && <Rsvp onClose={() => setShowRsvp(false)} /> }
     </div>
   )
 }
