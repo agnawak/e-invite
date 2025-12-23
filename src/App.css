@@ -14,7 +14,7 @@ body{
   align-items:center;
   justify-content:center;
   padding:1rem;
-  background: #fae2ae url("assets/png/flower wallpaper full.png");
+  background: url("assets/png/flower wallpaper full.png");
   background-size: 100vw auto;
   background-attachment: fixed;
 }
@@ -218,6 +218,5 @@ body{
 @media (max-width:420px){
   body{padding:.5rem}
   .hero{padding:1rem}
-  .names{font-size:1.25rem}
   .modal-content{padding:.75rem}
 }

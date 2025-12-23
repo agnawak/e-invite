@@ -48,7 +48,7 @@ function App() {
         <br />
         <h1 className="children great-vibes-regular">Nabil Hakim<br /> &amp; <br /> Elisa Jasmin</h1>
         <p className="subtitle playfair-display">Date</p>
-        <p className="date playfair-display">Sunday • 15.02.2026</p>
+        <p className="date playfair-display">Sunday 15.02.2026</p>
         <p className="subtitle playfair-display">Time</p>
         <p className="date playfair-display">3:00PM - 5:00PM</p>
         <p className="subtitle playfair-display">Venue</p>
