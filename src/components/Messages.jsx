@@ -43,9 +43,7 @@ export default function Messages({ messages = [], onSend }) {
         <input aria-label="Your name" className="message-name" placeholder="Your name (optional)" value={name} onChange={(e) => setName(e.target.value)} />
         <textarea aria-label="Message" maxLength={500} className="message-textarea" placeholder="Write your message…" value={text} onChange={(e) => setText(e.target.value)} rows={3} />
         {error && <div className="small error" role="alert">{error}</div>}
-        <div className="actions">
-          <button type="submit" className="btn-primary">Send Message</button>
-        </div>
+        <button type="submit" className="btn-primary">Send Message</button>
       </form>
     </div>
   )

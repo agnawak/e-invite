@@ -79,6 +79,12 @@
 .card h2{
   margin:0 0 .25rem
 }
+.last{
+  margin-bottom: 10vh;
+}
+.audi{
+  display:none;
+}
 
 /* Messages */
 .messages-card{padding:1rem;display:flex;flex-direction:column;gap:.75rem}
@@ -87,9 +93,9 @@
 .message-text{font-size:.95rem;margin-bottom:.25rem}
 .message-meta{color:var(--muted);font-size:.8rem}
 .message-form{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
-.message-name,.message-textarea{padding:.5rem;border-radius:6px;border:1px solid #eee;width:100%}
+.message-name,.message-textarea{padding:.5rem;border-radius:6px;border:1px solid #eee;width:100%;color:var(--muted);background:rgba(0,0,0,0.1)}
 .message-textarea{resize:vertical}
-.actions{display:flex;justify-content:flex-end}
+/* .actions{display:flex;justify-content:center} */
 .error{color:#d9534f}
 
 /* Countdown styles */
@@ -189,7 +195,7 @@
   border:none;
   padding:.6rem .9rem;
   border-radius:6px;
-  cursor:pointer
+  cursor:pointer;
 }
 .thanks{padding:.75rem}
 
@@ -214,3 +220,81 @@
   .hero{padding:1rem}
   .modal-content{padding:.75rem}
 }
+
+/* Splash screen */
+.splash{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.6);
+  z-index:9999;
+  padding:1rem;
+}
+.splash-content{
+  background:var(--card-bg);
+  padding:2rem;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  max-width:420px;
+  width:100%;
+}
+.splash .bismillah{
+  max-width:140px;
+  margin:0 auto 0.5rem;
+  display:block;
+}
+.enter-btn{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:.8rem 1.25rem;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:1rem;
+}
+.enter-btn:active{transform:translateY(1px)}
+
+/* splash fade */
+.splash{width: 100vw;height: 100vh;opacity:1;transition:opacity .36s ease}
+.splash.fade-out{opacity:0;pointer-events:none}
+
+/* Main content fade-in and staggered appearance */
+.site-main > *{opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .45s ease}
+.site-main.visible > *{opacity:1;transform:none}
+.site-main.visible > *:nth-child(1){transition-delay:0.05s}
+.site-main.visible > *:nth-child(2){transition-delay:0.12s}
+.site-main.visible > *:nth-child(3){transition-delay:0.22s}
+.site-main.visible > *:nth-child(4){transition-delay:0.32s}
+.site-main.visible > *:nth-child(5){transition-delay:0.42s}
+
+/* Bottom navigation */
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  display:flex;
+  gap:.5rem;
+  justify-content:space-around;
+  align-items:center;
+  padding:.6rem 1rem;
+  background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.95));
+  box-shadow:0 -6px 18px rgba(0,0,0,0.08);
+  border-top:2px solid rgba(0,0,0,0.04);
+  z-index:2;
+  height: 10vh;
+}
+.nav-btn{
+  background:transparent;
+  border:none;
+  padding:.5rem .75rem;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  color:var(--accent);
+}
+.nav-btn:active{transform:translateY(1px)}
