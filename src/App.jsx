@@ -29,6 +29,9 @@ function App() {
   return (
     <div>
       <Bubbles count={18} />
+      <audio autoplay muted loop>
+        <source src="./assets/Can't Help Falling In Love (Instrumental) Wedding March.mp3" type="audio/mpeg" />
+      </audio>
       <div className="hero invite-root opening-bg">
         <div>
           <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
@@ -52,13 +55,13 @@ function App() {
         <br />
         <h1 className="children great-vibes-regular">Nabil Hakim<br /> &amp; <br /> Elisa Jasmin</h1>
         <p className="subtitle playfair-display">Tarikh</p>
-        <p className="date playfair-display">Sunday 15.02.2026</p>
+        <p className="date playfair-display">Ahad 15.02.2026</p>
         <p className="subtitle playfair-display">Masa</p>
-        <p className="date playfair-display">3:00PM - 5:00PM</p>
+        <p className="date playfair-display">11:30AM - 4:00PM</p>
         <p className="subtitle playfair-display">Tempat</p>
         <p className="date playfair-display">The Gabion Garden Hall</p>
         <p className="subtitle playfair-display">Kod Pakaian</p>
-        <p className="date playfair-display">Formal</p>
+        <p className="date playfair-display">Formal & Berkasut</p>
         <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
         <button className="rsvp" onClick={() => setShowRsvp(true)}>
           RSVP
