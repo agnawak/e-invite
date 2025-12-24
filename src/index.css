@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #ffffff;
   background-color: #d7d7d7;
 
   font-synthesis: none;
@@ -14,8 +14,8 @@
 
   --accent:#b36b6b;
   --muted:#000000;
-  --bg:#d7d7d7;
-  --card-bg: rgba(255,255,255,0.8);
+  --bg:#ffffff;
+  --card-bg: #f7e0e0;
 }
 
 .great-vibes-regular {
@@ -52,6 +52,7 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
+  background-color: var(--bg);
 }
 
 h1 {
@@ -60,60 +61,50 @@ h1 {
   margin: 20px 0!important;
 }
 
-.bg-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  background: url("assets/png/flower wallpaper full.png") center / cover no-repeat;
-  z-index: -1;
-}
-
 .bubbles {
-  position: fixed;
-  inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 0; /* stay behind content */
+  position: fixed;
+  z-index: 1;
+  inset: 0;
 }
 
 .bubble {
   position: absolute;
-  /* start near top: `top` is provided inline by JS */
-  background: rgba(255, 255, 255, 0.55);
+  background: #fcecec;
   border-radius: 50%;
-  transform: translate(0, 0) scale(1);
+  transform-origin: center center;
+  transform: translate(0, 0) scaleX(1) scaleY(1);
   will-change: transform, opacity;
   animation-name: bubble-fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: normal; /* fall downward each cycle */
   animation-fill-mode: none;
-  opacity: 0.95;
+  opacity: 0.30;
   box-shadow: 0 6px 18px rgba(248, 170, 69, 0.04);
 }
 
 @keyframes bubble-fall {
   0% {
-    transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
-    opacity: 0.95;
+    transform: translateX(0px) translateY(0px) rotate(0deg) scaleX(1) scaleY(1);
+    opacity: 0.8;
   }
   25% {
-    transform: translateX(calc(var(--drift) * 0.35)) translateY(25vh) rotate(calc(var(--rot) * 0.18)) scale(1.01);
-    opacity: 0.95;
+    transform: translateX(calc(var(--drift) * 0.35)) translateY(25vh) rotate(calc(var(--rot) * 0.18)) scaleX(calc(1 * var(--sx))) scaleY(calc(1 * var(--sx)));
+    opacity: 0.75;
   }
   50% {
-    transform: translateX(calc(var(--drift) * -0.45)) translateY(50vh) rotate(calc(var(--rot) * -0.32)) scale(0.99);
-    opacity: 0.92;
+    transform: translateX(calc(var(--drift) * -0.45)) translateY(50vh) rotate(calc(var(--rot) * -0.32)) scaleX(calc(0.25 * var(--sx))) scaleY(calc(0.25 * var(--sx)));
+    opacity: 0.72;
   }
   75% {
-    transform: translateX(calc(var(--drift) * 0.75)) translateY(85vh) rotate(calc(var(--rot) * 0.42)) scale(1.02);
-    opacity: 0.88;
+    transform: translateX(calc(var(--drift) * 0.75)) translateY(85vh) rotate(calc(var(--rot) * 0.42)) scaleX(calc(1 * var(--sx))) scaleY(calc(1 * var(--sx)));
+    opacity: 0.68;
   }
   100% {
-    transform: translateX(calc(var(--drift) * 1.0)) translateY(120vh) rotate(calc(var(--rot) * 0.6)) scale(1.03);
-    opacity: 0.12;
+    transform: translateX(calc(var(--drift) * 1.0)) translateY(120vh) rotate(calc(var(--rot) * 0.6)) scaleX(calc(0.25 * var(--sx))) scaleY(calc(0.25 * var(--sx)));
+    opacity: 0.62;
   }
 }
 
