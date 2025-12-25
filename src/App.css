@@ -207,7 +207,24 @@
 
 .opening-bg{
   background: url("assets/png/bg2.png") center / cover no-repeat;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background-size: cover;
+  background-position: center;
+
 }
+
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 @media (max-width:720px){
   .names{font-size:3.5rem}

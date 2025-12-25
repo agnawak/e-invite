@@ -33,6 +33,7 @@ export default function App() {
   const [splashFading, setSplashFading] = useState(false)
   const [mainVisible, setMainVisible] = useState(false)
   const locationRef = useRef(null)
+  const [ref, visible] = useInView();
 
   useEffect(() => {
     const a = audioRef.current
@@ -81,6 +82,26 @@ export default function App() {
     }, 360)
   }
 
+  function useInView() {
+    const ref = useRef(null);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(entry.target);
+        }
+      });
+
+      if (ref.current) observer.observe(ref.current);
+      return () => observer.disconnect();
+    }, []);
+
+    return [ref, visible];
+  }
+
+
   return (
     <div>
       {showSplash && (
@@ -112,24 +133,26 @@ export default function App() {
           </div>
         </div>
 
-        <div className="hero invite-root">
-          <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
-          <p className="date playfair-display">Dengan lafaz Bismillah</p>
-          <h1 className="parents great-vibes-regular">Bokhari Bin Hassan<br /> &amp; <br />Hanorliza Binti Hassan Basri</h1>
-          <p className="date playfair-display">menjemput</p>
-          <p className="date playfair-display">Dato' | Datin | Tuan | Puan | Encik | Cik</p>
-          <p className="date playfair-display">hadir ke majlis perkahwinan anak kami</p>
-          <h1 className="children great-vibes-regular">Nabil Hakim<br /> &amp; <br /> Elisa Jasmin</h1>
-          <p className="date playfair-display">Ahad 15.02.2026</p>
-          <p className="subtitle playfair-display">Masa</p>
-          <p className="date playfair-display">11:30AM - 4:00PM</p>
-          <p className="subtitle playfair-display">Tempat</p>
-          <p className="date playfair-display">The Gabion Garden Hall</p>
-          <p className="subtitle playfair-display">Kod Pakaian</p>
-          <p className="date playfair-display">Formal & Berkasut</p>
-          <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
-          <button className="rsvp" onClick={() => setShowRsvp(true)}>RSVP</button>
-          <p className='subtitle note'>- Sila isi RSVP sebelum 20/01/26 -</p>
+        <div ref={ref} className={`fade ${visible ? "show" : ""}`}>
+          <div className="hero invite-root">
+            <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
+            <p className="date playfair-display">Dengan lafaz Bismillah</p>
+            <h1 className="parents great-vibes-regular">Bokhari Bin Hassan<br /> &amp; <br />Hanorliza Binti Hassan Basri</h1>
+            <p className="date playfair-display">menjemput</p>
+            <p className="date playfair-display">Dato' | Datin | Tuan | Puan | Encik | Cik</p>
+            <p className="date playfair-display">hadir ke majlis perkahwinan anak kami</p>
+            <h1 className="children great-vibes-regular">Nabil Hakim<br /> &amp; <br /> Elisa Jasmin</h1>
+            <p className="date playfair-display">Ahad 15.02.2026</p>
+            <p className="subtitle playfair-display">Masa</p>
+            <p className="date playfair-display">11:30AM - 4:00PM</p>
+            <p className="subtitle playfair-display">Tempat</p>
+            <p className="date playfair-display">The Gabion Garden Hall</p>
+            <p className="subtitle playfair-display">Kod Pakaian</p>
+            <p className="date playfair-display">Formal & Berkasut</p>
+            <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
+            <button className="rsvp" onClick={() => setShowRsvp(true)}>RSVP</button>
+            <p className='subtitle note'>- Sila isi RSVP sebelum 20/01/26 -</p>
+          </div>
         </div>
 
         <section className="details">
