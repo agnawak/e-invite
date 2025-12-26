@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from "react-router-dom";
 
 import bismillah from './assets/png/bismillah.png'
 import crownOpen from './assets/png/crown down.png'
@@ -19,6 +20,7 @@ import Messages from './components/Messages.jsx'
 
 export default function App() {
   const [showRsvp, setShowRsvp] = useState(false)
+  const navigate = useNavigate()
   // Messages are now stored in Supabase and fetched inside the `Messages` component.
   // Message persistence moved to Supabase; localStorage no longer used.
   // Sending of messages is handled in the `Messages` component (inserts into Supabase).
@@ -110,6 +112,7 @@ export default function App() {
               <p className="date playfair-display">Walimatul Urus</p>
               <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
               <button className="enter-btn" onClick={enterSite} aria-label="Enter site and enable music">BUKA</button>
+              <button className="btn-primary" onClick={() => navigate('/rsvp')}>Halaman Utama</button>
               <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
             </div>
           </div>
