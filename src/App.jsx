@@ -30,6 +30,7 @@ export default function App() {
   const [showSplash, setShowSplash] = useState(true)
   const [splashFading, setSplashFading] = useState(false)
   const [mainVisible, setMainVisible] = useState(false)
+  const [rsvpPage, setRsvpPage] = useState(false)
   const locationRef = useRef(null)
   const [ref1, visible1] = useInView();
   const [ref2, visible2] = useInView();
@@ -112,7 +113,7 @@ export default function App() {
               <p className="date playfair-display">Walimatul Urus</p>
               <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
               <button className="enter-btn" onClick={enterSite} aria-label="Enter site and enable music">BUKA</button>
-              <button className="btn-primary" style={{display:"none"}} onClick={() => navigate('/rsvp')}>Halaman Utama</button>
+              {rsvpPage && <button className="btn-primary" onClick={() => navigate('/rsvp')}>Halaman Utama</button>}
               <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
             </div>
           </div>
