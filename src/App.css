@@ -41,7 +41,7 @@
   color:var(--muted)
 }
 .date{
-  font-weight:600;
+  font-weight:200;
   font-size:1rem;
   margin: 0;
 }
@@ -219,11 +219,10 @@
 }
 .aturcara-bg{
   background: url("assets/png/bg3.png") center / cover no-repeat;
-  height: 40vh;
-  /* width: 100%;
+  width: 100%;
   aspect-ratio: 9 / 16;
   background-size: cover;
-  background-position: center; */
+  background-position: center;
 }
 
 .fade {
@@ -291,7 +290,7 @@
 .splash{width: 100vw;height: 100vh;opacity:1;}
 .splashcontent{width: 100vw;height: 100vh;}
 .splashfade{opacity:1;transition:opacity 2s ease;}
-.splashfade.fade-out{opacity:0;pointer-events:none}
+.fade-out{opacity:0;pointer-events:none}
 /* Main content fade-in and staggered appearance */
 .site-main > *{opacity:0;transform:translateY(8px);transition:opacity 3s ease, transform 3s ease}
 .site-main.visible > *{opacity:1;transform:none}

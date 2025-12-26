@@ -148,6 +148,7 @@ export default function App() {
             <p className="date playfair-display">Dato' | Datin | Tuan | Puan | Encik | Cik</p>
             <p className="date playfair-display">hadir ke majlis perkahwinan anak kami</p>
             <h1 className="children great-vibes-regular">Nabil Hakim<br /> &amp; <br /> Elisa Jasmin</h1>
+            <p className="subtitle playfair-display">Tarikh</p>
             <p className="date playfair-display">Ahad 15.02.2026</p>
             <p className="subtitle playfair-display">Masa</p>
             <p className="date playfair-display">11:30AM - 4:00PM</p>
@@ -166,12 +167,12 @@ export default function App() {
             <img src={bismillah} alt="" className='bismillah' />
             <h1 className="parents great-vibes-regular atur">Atur Cara Majlis</h1>
             <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
-              <p className="subtitle playfair-display">Kehadiran Tetamu</p>
-              <p className="date playfair-display">11:30 Pagi</p>
-              <p className="subtitle playfair-display">Ketibaan Pengantin</p>
-              <p className="date playfair-display">12:45 Tengah Hari</p>
-              <p className="subtitle playfair-display">Majlis Berakhir</p>
-              <p className="date playfair-display">4:00 Petang</p>
+            <p className="subtitle playfair-display">Kehadiran Tetamu</p>
+            <p className="date playfair-display">11:30 Pagi</p>
+            <p className="subtitle playfair-display">Ketibaan Pengantin</p>
+            <p className="date playfair-display">12:45 Tengah Hari</p>
+            <p className="subtitle playfair-display">Majlis Berakhir</p>
+            <p className="date playfair-display">4:00 Petang</p>
             <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
           </div>
         </div>
