@@ -112,7 +112,7 @@ export default function App() {
               <p className="date playfair-display">Walimatul Urus</p>
               <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
               <button className="enter-btn" onClick={enterSite} aria-label="Enter site and enable music">BUKA</button>
-              <button className="btn-primary" onClick={() => navigate('/rsvp')}>Halaman Utama</button>
+              <button className="btn-primary" style={{display:"none"}} onClick={() => navigate('/rsvp')}>Halaman Utama</button>
               <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
             </div>
           </div>
