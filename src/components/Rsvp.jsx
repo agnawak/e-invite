@@ -26,7 +26,7 @@ export default function Rsvp({ onClose }) {
     setError('')
 
     try {
-      const payload = { name: name.trim() || 'Guest', pax: Number(pax), attendance }
+      const payload = { name: name.trim() || 'Tetamu', pax: Number(pax), attendance }
       const { data, error } = await supabase.from('Nabil_RSVP').insert(payload).select().single()
 
       if (error) {
@@ -39,7 +39,7 @@ export default function Rsvp({ onClose }) {
       // clear inputs
       setName('')
       setPax(1)
-      setAttending('yes')
+      setAttending('Ya')
 
       // close modal after short delay and notify parent
       window.setTimeout(() => {
@@ -77,8 +77,8 @@ export default function Rsvp({ onClose }) {
                 <label>
                   Akan Hadir?
                   <select value={attendance} onChange={(e) => setAttending(e.target.value)}>
-                    <option value="yes">Ya</option>
-                    <option value="no">Tidak</option>
+                    <option value="Ya">Ya</option>
+                    <option value="Tidak">Tidak</option>
                   </select>
                 </label>
                 <label>
@@ -91,7 +91,7 @@ export default function Rsvp({ onClose }) {
               </form>
             ) : (
               <div className="thanks">
-                <p>Terima kasih, {name || 'tetamu'} — RSVP anda diterima.</p>
+                <p>Terima kasih, RSVP anda diterima.</p>
               </div>
             )}
           </div>

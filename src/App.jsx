@@ -20,9 +20,7 @@ import Messages from './components/Messages.jsx'
 export default function App() {
   const [showRsvp, setShowRsvp] = useState(false)
   // Messages are now stored in Supabase and fetched inside the `Messages` component.
-
   // Message persistence moved to Supabase; localStorage no longer used.
-
   // Sending of messages is handled in the `Messages` component (inserts into Supabase).
 
   const audioRef = useRef(null)
@@ -117,7 +115,6 @@ export default function App() {
           </div>
         </div>
       )}
-      {/* <main className={`site-main ${mainVisible ? 'visible' : ''}`}> */}
         <Bubbles count={18} />
         <div className="hero invite-root opening-bg">
           <div className={`site-main ${mainVisible ? 'visible' : ''}`}>
@@ -180,7 +177,7 @@ export default function App() {
           </div>
           <div ref={ref4} className={`fade ${visible4 ? "show" : ""}`}>
             <div className="last" ref={locationRef}>
-              <p className="doa playfair-display">Ya Allah Ya Rahman Ya Rahim <br /> kau berkatilah masjlis perkahwinan ini. <br />Limpahkanlah baraqah dan rahmatMu kepada kedua mempelai ini. Kurniakanlah mereka kelak zuriat yang soleh dan solehah. kekalkanlah jodoh mereka hingga ke jannah.</p>
+              <p className="doa playfair-display">Ya Allah Ya Rahman Ya Rahim, <br /> kau berkatilah majlis perkahwinan ini. <br />Limpahkanlah baraqah dan rahmatMu kepada kedua mempelai ini. Kurniakanlah mereka kelak zuriat yang soleh dan solehah. Kekalkanlah jodoh mereka hingga ke jannah.</p>
               <br />
               <h2>Ucapan</h2>
               <Messages />
@@ -219,7 +216,6 @@ export default function App() {
         >
           <source src={song} type="audio/mpeg" />
         </audio>
-      {/* </main> */}
     </div>
   )
 }
