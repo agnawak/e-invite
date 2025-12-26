@@ -1,9 +1,56 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { supabase } from '../lib/supabase'
 
 export default function Rsvp({ onClose }) {
   const [name, setName] = useState('')
+  const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
-  const [attending, setAttending] = useState('yes')
+  const [attendance, setAttending] = useState('yes')
+  const [pax, setPax] = useState(1)
+  const [text, setText] = useState('')
+
+  async function submitRsvp(e) {
+    e.preventDefault()
+
+    // basic validation
+    if (!name.trim()) {
+      setError('Please enter your name')
+      return
+    }
+
+    if (!pax || Number(pax) < 1) {
+      setError('Please enter number of attendees')
+      return
+    }
+
+    setError('')
+
+    try {
+      const payload = { name: name.trim() || 'Guest', pax: Number(pax), attendance }
+      const { data, error } = await supabase.from('Nabil_RSVP').insert(payload).select().single()
+
+      if (error) {
+        console.error('Insert failed:', error)
+        setError('Failed to send RSVP — try again')
+        return
+      }
+
+      setSent(true)
+      // clear inputs
+      setName('')
+      setPax(1)
+      setAttending('yes')
+
+      // close modal after short delay and notify parent
+      window.setTimeout(() => {
+        setSent(false)
+        if (onClose) onClose()
+      }, 1000)
+    } catch (err) {
+      console.error(err)
+      setError('Failed to send RSVP — try again')
+    }
+  }
 
   useEffect(() => {
     function onKey(e) {
@@ -16,38 +63,35 @@ export default function Rsvp({ onClose }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  function submitRsvp(e) {
-    e.preventDefault()
-    setSent(true)
-    // In production, replace with real endpoint or mailto link.
-  }
-
   return (
     <div className="modal" role="dialog" aria-modal="true" onClick={(e) => { if (e.target === e.currentTarget) { setSent(false); if (onClose) onClose() } }}>
           <div className="modal-content">
-            <button className="close" onClick={() => { setSent(false); if (onClose) onClose(); }}>Close</button>
+            <button className="close" onClick={() => { setSent(false); if (onClose) onClose(); }}>Tutup</button>
             <h3>RSVP</h3>
             {!sent ? (
               <form onSubmit={submitRsvp} className="rsvp-form">
                 <label>
-                  Your name
+                  Nama
                   <input value={name} onChange={(e) => setName(e.target.value)} required />
                 </label>
                 <label>
-                  Will you attend?
-                  <select value={attending} onChange={(e) => setAttending(e.target.value)}>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                  Akan Hadir?
+                  <select value={attendance} onChange={(e) => setAttending(e.target.value)}>
+                    <option value="yes">Ya</option>
+                    <option value="no">Tidak</option>
                   </select>
                 </label>
+                <label>
+                  Jumlah Kehadiran
+                  <input value={pax} type='number' min={1} onChange={(e) => setPax(parseInt(e.target.value, 10) || 1)} required />
+                </label>
                 <div className="actions">
-                  <button type="submit" className="btn-primary">Send RSVP</button>
+                  <button type="submit" className="btn-primary">Hantar RSVP</button>
                 </div>
               </form>
             ) : (
               <div className="thanks">
-                <p>Thanks, {name || 'guest'} — your RSVP is recorded.</p>
-                <p className="small">Customize the RSVP handling in <code>src/App.jsx</code>.</p>
+                <p>Terima kasih, {name || 'tetamu'} — RSVP anda diterima.</p>
               </div>
             )}
           </div>

@@ -19,12 +19,6 @@ import Messages from './components/Messages.jsx'
 
 export default function App() {
   const [showRsvp, setShowRsvp] = useState(false)
-  // Messages are now stored in Supabase and fetched inside the `Messages` component.
-
-  // Message persistence moved to Supabase; localStorage no longer used.
-
-  // Sending of messages is handled in the `Messages` component (inserts into Supabase).
-
   const audioRef = useRef(null)
   const [audioMuted, setAudioMuted] = useState(true)
   const [showSplash, setShowSplash] = useState(true)
@@ -125,7 +119,7 @@ export default function App() {
             <p className="date playfair-display">Walimatul Urus</p>
             <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
             <div>
-              <p ref={locationRef} className="date playfair-display">The Gabion Garden Hall</p>
+              <p className="date playfair-display">The Gabion Garden Hall</p>
               <p className="date playfair-display">15.02.2026</p>
             </div>
             <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
@@ -179,7 +173,7 @@ export default function App() {
             </div>
           </div>
           <div ref={ref4} className={`fade ${visible4 ? "show" : ""}`}>
-            <div className="last">
+            <div className="last" ref={locationRef}>
               <p className="doa playfair-display">Ya Allah Ya Rahman Ya Rahim <br /> kau berkatilah masjlis perkahwinan ini. <br />Limpahkanlah baraqah dan rahmatMu kepada kedua mempelai ini. Kurniakanlah mereka kelak zuriat yang soleh dan solehah. kekalkanlah jodoh mereka hingga ke jannah.</p>
               <br />
               <h2>Ucapan</h2>
@@ -192,9 +186,7 @@ export default function App() {
 
         {/* Bottom navigation */}
         <nav className="bottom-nav" aria-label="Main navigation">
-          <button className="nav-btn" onClick={() => {
-            if (locationRef.current) locationRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
-          }}>
+          <button className="nav-btn" onClick={() => window.open("https://share.google/bhZGxmEoPLZ8xG6JJ", "_blank")}>
             <img style={{color:"white"}} src={location} alt="" />
           </button>
           <button className="nav-btn" onClick={() => toggleAudio()} aria-pressed={!audioMuted}>
@@ -203,8 +195,10 @@ export default function App() {
           <button className="nav-btn" onClick={() => setShowRsvp(true)}>
             <img src={attandence} alt="" />
           </button>
-          <button className="nav-btn">
-            <img src={message} alt="" />
+          <button className="nav-btn" onClick={() => {
+            if (locationRef.current) locationRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          }}>
+            <img src={message} alt=""  />
           </button>
         </nav>
 

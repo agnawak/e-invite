@@ -39,20 +39,6 @@ export default function Messages() {
 
     load()
 
-    // Optional: set up realtime subscription for new messages (requires Realtime enabled)
-    // Uncomment and adjust table/schema name if you want realtime updates
-    // channel = supabase
-    //   .channel('public:messages')
-    //   .on(
-    //     'postgres_changes',
-    //     { event: 'INSERT', schema: 'public', table: 'Nabil_Messages' },
-    //     (payload) => {
-    //       const n = payload.new
-    //       setMessages((prev) => [...prev, { id: n.id, name: n.name, text: n.wish, createdAt: n.created_at }])
-    //     }
-    //   )
-    //   .subscribe()
-
     function cleanup() {
       mounted = false
       if (channel && typeof channel.unsubscribe === 'function') {
@@ -93,7 +79,7 @@ export default function Messages() {
     window.setTimeout(() => {
       setShowForm(false)
       setSent(false)
-    }, 1200)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -129,16 +115,16 @@ export default function Messages() {
       {showForm && (
         <div className="modal" role="dialog" aria-modal="true" onClick={(e) => { if (e.target === e.currentTarget) { setSent(false); setShowForm(false) } }}>
           <div className="modal-content">
-            <button className="close" onClick={() => { setSent(false); setShowForm(false); }}>Close</button>
+            <button className="close" onClick={() => { setSent(false); setShowForm(false); }}>Tutup</button>
             <h3>Leave a message</h3>
             {!sent ? (
               <form onSubmit={submit} ref={formRef} className="rsvp-form">
                 <label>
-                  Your name
+                  Nama
                   <input value={name} onChange={(e) => setName(e.target.value)} />
                 </label>
                 <label>
-                  Your message
+                  Ucapan Anda
                   <textarea value={text} onChange={(e) => setText(e.target.value)} rows={4} />
                 </label>
                 {error && <div className="small error" role="alert">{error}</div>}
