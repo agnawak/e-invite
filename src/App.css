@@ -81,6 +81,9 @@
   margin:0 0 .25rem
 }
 .last{
+  text-align:center;
+  padding: 1.25rem;
+  width: 100%;
   margin-bottom: 10vh;
 }
 .audi{
@@ -88,13 +91,13 @@
 }
 
 /* Messages */
-.messages-card{padding:1rem;display:flex;flex-direction:column;gap:.75rem}
-.messages-list{max-height:160px;overflow:auto;border-radius:8px;padding:.5rem;background:rgba(0,0,0,0.1)}
-.message-item{padding:.5rem;border-bottom:1px dashed rgba(0,0,0,0.1);text-align:left}
-.message-text{font-size:.95rem;margin-bottom:.25rem}
-.message-meta{color:var(--muted);font-size:.8rem}
+.messages-card{padding:1rem;display:flex;flex-direction:column;gap:.75rem;}
+.messages-list{max-height:50vh;overflow:auto;border-radius:8px;padding:.5rem;background:rgba(255,255,255);box-shadow:inset 0 2px 8px rgba(255,255,255,0.3)}
+.message-item{padding:.5rem;text-align:center}
+.message-text{font-size:.95rem;margin-bottom:.25rem;font-style: italic;}
+.message-meta{color:var(--muted);font-size:1rem;font-weight: 500;}
 .message-form{display:flex;flex-direction:column;gap:.5rem;margin-top:.25rem}
-.message-name,.message-textarea{padding:.5rem;border-radius:6px;border:1px solid #eee;width:100%;color:var(--muted);background:rgba(0,0,0,0.1)}
+.message-name,.message-textarea{padding:.5rem;border-radius:6px;border:1px solid #eee;width:100%;color:var(--muted);background:rgba(255,255,255);box-shadow:inset 0 2px 8px rgba(255,255,255,0.3)}
 .message-textarea{resize:vertical}
 /* .actions{display:flex;justify-content:center} */
 .error{color:#d9534f}
@@ -133,10 +136,6 @@
 .footer{
   margin-top:1rem;
   text-align:center;
-  color:var(--muted)
-}
-.small{
-  font-size:.85rem;
   color:var(--muted)
 }
 

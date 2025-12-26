@@ -1,36 +1,29 @@
 import { useState, useEffect, useRef } from 'react'
+
 import bismillah from './assets/png/bismillah.png'
 import crownOpen from './assets/png/crown down.png'
 import crownClose from './assets/png/crown up.png'
-import Countdown from './components/Countdown.jsx'
+
 import location from './assets/icons/location.svg'
 import message from './assets/icons/message.svg'
 import musicOff from './assets/icons/music_off.svg'
 import musicOn from './assets/icons/music_on.svg'
 import attandence from './assets/icons/rsvp.svg'
+
+import song from "./assets/Can't Help Falling In Love (Instrumental) Wedding March.mp3"
+
+import Countdown from './components/Countdown.jsx'
 import Rsvp from './components/Rsvp.jsx'
 import Bubbles from './components/Bubbles.jsx'
 import Messages from './components/Messages.jsx'
-import song from "./assets/Can't Help Falling In Love (Instrumental) Wedding March.mp3"
 
 export default function App() {
   const [showRsvp, setShowRsvp] = useState(false)
-  const [messages, setMessages] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('messages') || '[]')
-    } catch (e) {
-      return []
-    }
-  })
+  // Messages are now stored in Supabase and fetched inside the `Messages` component.
 
-  useEffect(() => {
-    localStorage.setItem('messages', JSON.stringify(messages))
-  }, [messages])
+  // Message persistence moved to Supabase; localStorage no longer used.
 
-  function sendMessage({ text, name }) {
-    const msg = { id: Date.now(), text, name: name || 'Guest', createdAt: new Date().toISOString() }
-    setMessages((s) => [...s, msg])
-  }
+  // Sending of messages is handled in the `Messages` component (inserts into Supabase).
 
   const audioRef = useRef(null)
   const [audioMuted, setAudioMuted] = useState(true)
@@ -186,11 +179,11 @@ export default function App() {
             </div>
           </div>
           <div ref={ref4} className={`fade ${visible4 ? "show" : ""}`}>
-            <div className="card last">
+            <div className="last">
               <p className="doa playfair-display">Ya Allah Ya Rahman Ya Rahim <br /> kau berkatilah masjlis perkahwinan ini. <br />Limpahkanlah baraqah dan rahmatMu kepada kedua mempelai ini. Kurniakanlah mereka kelak zuriat yang soleh dan solehah. kekalkanlah jodoh mereka hingga ke jannah.</p>
               <br />
               <h2>Ucapan</h2>
-              <Messages messages={messages} onSend={sendMessage} />
+              <Messages />
             </div>
           </div>
         </section>
