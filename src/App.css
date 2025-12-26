@@ -11,16 +11,16 @@
   z-index: 0;
   overflow:visible;
   margin: 0;
-  /* background:var(--card-bg); */
   padding:2.5rem;
-  /* border-radius:12px; */
   text-align:center;
-  /* box-shadow:0 6px 24px rgba(0,0,0,0.06); */
   min-height:80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   place-items: center;
+}
+.nogap{
+  justify-content: center!important;
 }
 .names{
   margin:0;
@@ -45,6 +45,7 @@
   font-size:1rem;
   margin: 0;
 }
+
 .doa{
   font-weight:400;
   font-size:14px;
@@ -205,22 +206,33 @@
   color: #7e7e7e;
 }
 
+.atur{
+  margin-bottom: 0!important;
+}
+
 .opening-bg{
   background: url("assets/png/bg2.png") center / cover no-repeat;
   width: 100%;
   aspect-ratio: 9 / 16;
   background-size: cover;
   background-position: center;
-
+}
+.aturcara-bg{
+  background: url("assets/png/bg3.png") center / cover no-repeat;
+  height: 40vh;
+  /* width: 100%;
+  aspect-ratio: 9 / 16;
+  background-size: cover;
+  background-position: center; */
 }
 
 .fade {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s ease;
+  transition: all 3s ease;
 }
 
-.fade.show {
+.show {
   opacity: 1;
   transform: translateY(0);
 }
@@ -276,17 +288,14 @@
 .enter-btn:active{transform:translateY(1px)}
 
 /* splash fade */
-.splash{width: 100vw;height: 100vh;opacity:1;transition:opacity .36s ease}
-.splash.fade-out{opacity:0;pointer-events:none}
-
+.splash{width: 100vw;height: 100vh;opacity:1;}
+.splashcontent{width: 100vw;height: 100vh;}
+.splashfade{opacity:1;transition:opacity 2s ease;}
+.splashfade.fade-out{opacity:0;pointer-events:none}
 /* Main content fade-in and staggered appearance */
-.site-main > *{opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .45s ease}
+.site-main > *{opacity:0;transform:translateY(8px);transition:opacity 3s ease, transform 3s ease}
 .site-main.visible > *{opacity:1;transform:none}
-.site-main.visible > *:nth-child(1){transition-delay:0.05s}
-.site-main.visible > *:nth-child(2){transition-delay:0.12s}
-.site-main.visible > *:nth-child(3){transition-delay:0.22s}
-.site-main.visible > *:nth-child(4){transition-delay:0.32s}
-.site-main.visible > *:nth-child(5){transition-delay:0.42s}
+.site-main.visible > *:nth-child(1){transition-delay:3s}
 
 /* Bottom navigation */
 .bottom-nav{

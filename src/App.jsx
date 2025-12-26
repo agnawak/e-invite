@@ -3,6 +3,11 @@ import bismillah from './assets/png/bismillah.png'
 import crownOpen from './assets/png/crown down.png'
 import crownClose from './assets/png/crown up.png'
 import Countdown from './components/Countdown.jsx'
+import location from './assets/icons/location.svg'
+import message from './assets/icons/message.svg'
+import musicOff from './assets/icons/music_off.svg'
+import musicOn from './assets/icons/music_on.svg'
+import attandence from './assets/icons/rsvp.svg'
 import Rsvp from './components/Rsvp.jsx'
 import Bubbles from './components/Bubbles.jsx'
 import Messages from './components/Messages.jsx'
@@ -33,7 +38,10 @@ export default function App() {
   const [splashFading, setSplashFading] = useState(false)
   const [mainVisible, setMainVisible] = useState(false)
   const locationRef = useRef(null)
-  const [ref, visible] = useInView();
+  const [ref1, visible1] = useInView();
+  const [ref2, visible2] = useInView();
+  const [ref3, visible3] = useInView();
+  const [ref4, visible4] = useInView();
 
   useEffect(() => {
     const a = audioRef.current
@@ -79,7 +87,7 @@ export default function App() {
     window.setTimeout(() => {
       setShowSplash(false)
       setMainVisible(true)
-    }, 360)
+    }, 2000)
   }
 
   function useInView() {
@@ -90,7 +98,7 @@ export default function App() {
       const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(entry.target);
+          // observer.unobserve(entry.target);
         }
       });
 
@@ -101,13 +109,12 @@ export default function App() {
     return [ref, visible];
   }
 
-
   return (
     <div>
       {showSplash && (
-        <div className="splash" role="dialog" aria-modal="true">
-          <div className="hero invite-root opening-bg">
-            <div >
+        <div className="splash">
+          <div className="hero invite-root opening-bg splashcontent">
+            <div className={`splashfade ${splashFading ? 'fade-out' : ''}`}>
               <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
               <p className="date playfair-display">Walimatul Urus</p>
               <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
@@ -117,11 +124,10 @@ export default function App() {
           </div>
         </div>
       )}
-      <main className={`site-main ${mainVisible ? 'visible' : ''}`}>
+      {/* <main className={`site-main ${mainVisible ? 'visible' : ''}`}> */}
         <Bubbles count={18} />
-
         <div className="hero invite-root opening-bg">
-          <div>
+          <div className={`site-main ${mainVisible ? 'visible' : ''}`}>
             <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
             <p className="date playfair-display">Walimatul Urus</p>
             <h1 className="names great-vibes-regular">Nabil <br /> &amp; <br /> Elisa</h1>
@@ -133,7 +139,7 @@ export default function App() {
           </div>
         </div>
 
-        <div ref={ref} className={`fade ${visible ? "show" : ""}`}>
+        <div ref={ref1} className={`fade ${visible1 ? "show" : ""}`}>
           <div className="hero invite-root">
             <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
             <p className="date playfair-display">Dengan lafaz Bismillah</p>
@@ -155,17 +161,36 @@ export default function App() {
           </div>
         </div>
 
-        <section className="details">
-          <div className="card">
-            <h2>Pengiraan Detik</h2>
-            {/* Target: 15 February 2026 (local time). Modify as needed. */}
-            <Countdown targetDate={new Date(2026, 1, 15, 0, 0, 0)} />
+        <div ref={ref2} className={`fade ${visible2 ? "show" : ""}`}>
+          <div className="hero invite-root aturcara-bg nogap">
+            <img src={bismillah} alt="" className='bismillah' />
+            <h1 className="parents great-vibes-regular atur">Atur Cara Majlis</h1>
+            <img src={crownOpen} alt="crownOpen" className='bismillah crownOpen' />
+              <p className="subtitle playfair-display">Kehadiran Tetamu</p>
+              <p className="date playfair-display">11:30 Pagi</p>
+              <p className="subtitle playfair-display">Ketibaan Pengantin</p>
+              <p className="date playfair-display">12:45 Tengah Hari</p>
+              <p className="subtitle playfair-display">Majlis Berakhir</p>
+              <p className="date playfair-display">4:00 Petang</p>
+            <img src={crownClose} alt="crownClose" className='bismillah crownOpen' />
           </div>
-          <div className="card last">
-            <p className="doa playfair-display">Ya Allah Ya Rahman Ya Rahim <br /> kau berkatilah masjlis perkahwinan ini. <br />Limpahkanlah baraqah dan rahmatMu kepada kedua mempelai ini. Kurniakanlah mereka kelak zuriat yang soleh dan solehah. kekalkanlah jodoh mereka hingga ke jannah.</p>
-            <br />
-            <h2>Ucapan</h2>
-            <Messages messages={messages} onSend={sendMessage} />
+        </div>
+
+        <section className="details">
+          <div ref={ref3} className={`fade ${visible3 ? "show" : ""}`}>
+            <div className="card">
+              <h2>Pengiraan Detik</h2>
+              {/* Target: 15 February 2026 (local time). Modify as needed. */}
+              <Countdown targetDate={new Date(2026, 1, 15, 0, 0, 0)} />
+            </div>
+          </div>
+          <div ref={ref4} className={`fade ${visible4 ? "show" : ""}`}>
+            <div className="card last">
+              <p className="doa playfair-display">Ya Allah Ya Rahman Ya Rahim <br /> kau berkatilah masjlis perkahwinan ini. <br />Limpahkanlah baraqah dan rahmatMu kepada kedua mempelai ini. Kurniakanlah mereka kelak zuriat yang soleh dan solehah. kekalkanlah jodoh mereka hingga ke jannah.</p>
+              <br />
+              <h2>Ucapan</h2>
+              <Messages messages={messages} onSend={sendMessage} />
+            </div>
           </div>
         </section>
 
@@ -176,20 +201,16 @@ export default function App() {
           <button className="nav-btn" onClick={() => {
             if (locationRef.current) locationRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
           }}>
-            View location
+            <img style={{color:"white"}} src={location} alt="" />
           </button>
           <button className="nav-btn" onClick={() => toggleAudio()} aria-pressed={!audioMuted}>
-            {audioMuted ? 'Start music' : 'Stop music'}
+            {audioMuted ? <img src={musicOff} alt="" /> : <img src={musicOn} alt="" />}
           </button>
           <button className="nav-btn" onClick={() => setShowRsvp(true)}>
-            RSVP
+            <img src={attandence} alt="" />
           </button>
-          <button className="nav-btn" onClick={() => {
-            const name = window.prompt('Your name (optional)')
-            const text = window.prompt('Type your message')
-            if (text) sendMessage({ text, name })
-          }}>
-            Send message
+          <button className="nav-btn">
+            <img src={message} alt="" />
           </button>
         </nav>
 
@@ -204,7 +225,7 @@ export default function App() {
         >
           <source src={song} type="audio/mpeg" />
         </audio>
-      </main>
+      {/* </main> */}
     </div>
   )
 }
