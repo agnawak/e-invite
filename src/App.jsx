@@ -19,6 +19,12 @@ import Messages from './components/Messages.jsx'
 
 export default function App() {
   const [showRsvp, setShowRsvp] = useState(false)
+  // Messages are now stored in Supabase and fetched inside the `Messages` component.
+
+  // Message persistence moved to Supabase; localStorage no longer used.
+
+  // Sending of messages is handled in the `Messages` component (inserts into Supabase).
+
   const audioRef = useRef(null)
   const [audioMuted, setAudioMuted] = useState(true)
   const [showSplash, setShowSplash] = useState(true)
