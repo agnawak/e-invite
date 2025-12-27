@@ -6,7 +6,7 @@ export default function Rsvp({ onClose }) {
   const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
   const [attendance, setAttending] = useState('Ya')
-  const [pax, setPax] = useState(1)
+  const [pax, setPax] = useState('')
   const [text, setText] = useState('')
 
   async function submitRsvp(e) {
