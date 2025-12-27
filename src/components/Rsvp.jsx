@@ -5,7 +5,7 @@ export default function Rsvp({ onClose }) {
   const [name, setName] = useState('')
   const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
-  const [attendance, setAttending] = useState('yes')
+  const [attendance, setAttending] = useState('Ya')
   const [pax, setPax] = useState(1)
   const [text, setText] = useState('')
 
@@ -83,7 +83,7 @@ export default function Rsvp({ onClose }) {
                 </label>
                 <label>
                   Jumlah Kehadiran
-                  <input value={pax} type='number' min={1} onChange={(e) => setPax(parseInt(e.target.value, 10) || 1)} required />
+                  <input value={pax} type='number' onChange={(e) => setPax(parseInt(e.target.value, 10))} required />
                 </label>
                 <div className="actions">
                   <button type="submit" className="btn-primary">Hantar RSVP</button>
